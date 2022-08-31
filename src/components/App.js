@@ -11,8 +11,8 @@ function App() {
   const [ tasks, setShownTasks] = useState(TASKS);
   const [ selectedCategory, setSelectedCategory ] = useState('');
 
-  function clickCategory() {
-
+  function clickCategory(category) {
+    setSelectedCategory(selectedCategory => category);
   }
 
   function deleteTask(text) {
