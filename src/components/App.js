@@ -20,13 +20,18 @@ function App() {
       task.text !== text))
   }
 
+  function onTaskFormSubmit(formData) {
+    setTasks(tasks => [...tasks, formData]);
+  }
+
+
   const shownTasks = tasks.filter(task => selectedCategory === 'All' || task.category === selectedCategory)
 
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} selectedCategory={selectedCategory} clickCategory={clickCategory}/>
-      <NewTaskForm categories={CATEGORIES} setTasks={setTasks}/>
+      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={onTaskFormSubmit}/>
       <TaskList tasks={shownTasks} deleteTask={deleteTask}/>
     </div>
   );
