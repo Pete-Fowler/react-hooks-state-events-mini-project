@@ -8,15 +8,21 @@ console.log("Here's the data you're working with");
 console.log({ CATEGORIES, TASKS });
 
 function App() {
-  const [ tasks, setShownTasks] = useState(TASKS);
-  const [ selectedCategory, setSelectedCategory ] = useState('');
+  const [ tasks, setTasks] = useState(TASKS);
+  const [ selectedCategory, setSelectedCategory ] = useState('All');
 
   function clickCategory(category) {
     setSelectedCategory(selectedCategory => category);
   }
 
+  const shownTasks = tasks.filter(task => selectedCategory === 'All' || task.category === selectedCategory)
+//   The list of tasks being displayed should be filtered, so that only tasks that match the category that was clicked are displayed.
+//  set shownTask state to tasks with the matching category
+//    .filter the shownTasks
+// If the button for "All" is selected, all the tasks should be displayed.
+
   function deleteTask(text) {
-    setShownTasks(tasks => tasks.filter(task => 
+    setTasks(tasks => tasks.filter(task => 
       task.text !== text))
   }
 
@@ -24,8 +30,8 @@ function App() {
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} selectedCategory={selectedCategory} clickCategory={clickCategory}/>
-      <NewTaskForm />
-      <TaskList tasks={tasks} deleteTask={deleteTask}/>
+      <NewTaskForm categories={CATEGORIES}/>
+      <TaskList tasks={shownTasks} deleteTask={deleteTask}/>
     </div>
   );
 }
