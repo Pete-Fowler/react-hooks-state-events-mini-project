@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewTaskForm({ categories, setTasks }) {
+function NewTaskForm({ categories, onTaskFormSubmit }) {
   const [ formData, setFormData ] = useState({text: '', category: 'Code'});
 
   const options = categories.map(cat => cat === 'All' ? null : <option key={cat}>{cat}</option>)
@@ -8,16 +8,16 @@ function NewTaskForm({ categories, setTasks }) {
   function formChange(e) {
     const key = e.target.name;
     const value = e.target.value;
-    setFormData({ ...formData, [key]: value });
+    setFormData({...formData, [key]: value});
   }
 
-  function onTaskFormSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    setTasks(tasks => [...tasks, formData]);
+    onTaskFormSubmit(formData)
   }
 
   return (
-    <form className="new-task-form" onSubmit={onTaskFormSubmit}>
+    <form className="new-task-form" onSubmit={handleSubmit}>
       <label>
         Details
         <input type="text" name="text" value={formData.text} onChange={formChange} />
