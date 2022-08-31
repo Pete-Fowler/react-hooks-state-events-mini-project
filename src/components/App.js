@@ -9,8 +9,11 @@ console.log({ CATEGORIES, TASKS });
 
 function App() {
   const [ tasks, setShownTasks] = useState(TASKS);
+  const [ selectedCategory, setSelectedCategory ] = useState('');
 
+  function clickCategory() {
 
+  }
 
   function deleteTask(text) {
     setShownTasks(tasks => tasks.filter(task => 
@@ -20,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter />
+      <CategoryFilter categories={CATEGORIES} selectedCategory={selectedCategory} clickCategory={clickCategory}/>
       <NewTaskForm />
       <TaskList tasks={tasks} deleteTask={deleteTask}/>
     </div>
