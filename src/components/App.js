@@ -16,10 +16,6 @@ function App() {
   }
 
   const shownTasks = tasks.filter(task => selectedCategory === 'All' || task.category === selectedCategory)
-//   The list of tasks being displayed should be filtered, so that only tasks that match the category that was clicked are displayed.
-//  set shownTask state to tasks with the matching category
-//    .filter the shownTasks
-// If the button for "All" is selected, all the tasks should be displayed.
 
   function deleteTask(text) {
     setTasks(tasks => tasks.filter(task => 

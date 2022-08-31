@@ -2,7 +2,7 @@ import React from "react";
 
 function NewTaskForm({ categories }) {
   
-  const options = categories.map(cat => <option key={cat}>{cat}</option>)
+  const options = categories.map(cat => cat === 'All' ? null : <option key={cat}>{cat}</option>)
   
   return (
     <form className="new-task-form">
